@@ -1,0 +1,322 @@
+@font-face{font-family:'Weather Sans';src:url(weather-1.woff) format('woff');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Weather Sans';src:url(weather-2.woff) format('woff');font-weight:700;font-style:normal;font-display:swap;}
+.intro :root{--navy:#082d65;--blue:#148ada;--cyan:#64cce8;--muted:#59647b}
+.intro *{box-sizing:border-box}
+.intro .weather-slide{position:relative;isolation:isolate;overflow:hidden;background:#fff;width:100%;max-width:1600px;min-height:660px;padding:44px 52px 92px;box-shadow:0 20px 70px #082d6512}
+.intro .header{display:flex;align-items:center;gap:34px;position:relative;z-index:2;width:79%}
+.intro .logos{display:flex;align-items:center;gap:25px;flex-shrink:0}
+.intro .logos img{object-fit:contain;height:133px;width:auto}
+.intro .school{border-left:2px solid var(--navy);padding-left:32px}
+.intro .school p{margin:0}
+.intro .university{font-weight:700;font-size:clamp(22px,2.6vw,38px);line-height:1.25}
+.intro .faculty{font-weight:700;font-size:clamp(20px,2.2vw,30px);margin-top:8px!important}
+.intro .major{color:var(--muted);font-size:clamp(15px,1.7vw,24px);margin-top:10px!important}
+.intro .rule{height:3px;background:linear-gradient(90deg,var(--navy),var(--blue) 42%,#8cdcf0);width:70%;margin:28px 0 34px}
+.intro .content{position:relative;z-index:2;width:72%}
+.intro .eyebrow{display:flex;align-items:center;gap:18px;font-size:25px;letter-spacing:2px;font-weight:700;color:var(--muted);margin:0 0 19px}
+.intro .eyebrow:after{content:"";width:98px;height:5px;background:var(--cyan)}
+.intro h1{font-size:clamp(38px,5vw,72px);line-height:1.14;letter-spacing:-1.8px;margin:0 0 30px;font-weight:700}
+.intro h1 span{display:block}
+.intro .details{display:flex;gap:38px;color:#202c40;font-size:20px;line-height:1.5;padding-left:70px}
+.intro .advisor{border-left:6px solid var(--cyan);padding-left:18px;flex-shrink:0}
+.intro .label{color:var(--muted)}
+.intro .student{border-left:1px solid #a1aec1;padding-left:28px;display:grid;grid-template-columns:auto 1fr;gap:4px 24px}
+.intro .student dd,.intro .student dt{margin:0}
+.intro .student dt{color:var(--muted)}
+.intro .art{position:absolute;width:36%;right:8px;top:145px;z-index:1}
+.intro .waves{position:absolute;bottom:-1px;left:0;width:100%;height:155px;z-index:0}
+.intro .corner{position:absolute;width:300px;height:160px;right:-40px;top:-65px;background:linear-gradient(140deg,#f4fbff,#93d8f4);border-radius:0 0 0 100%;z-index:0}
+@media(max-width:1100px){.intro .weather-slide{padding:32px 30px 100px;min-height:600px}
+.intro .header{width:100%;gap:20px}
+.intro .logos{gap:14px}
+.intro .logos img{height:100px}
+.intro .school{padding-left:20px}
+.intro .details{padding-left:10px;font-size:17px;gap:20px}
+.intro .student{padding-left:20px;gap:4px 12px}
+.intro .art{top:190px;width:34%}
+.intro h1{font-size:4.8vw}}
+@media(max-width:700px){.intro .weather-slide{padding:26px 22px 88px;min-height:0}
+.intro .header{flex-direction:column;align-items:flex-start;gap:20px}
+.intro .logos img{height:85px}
+.intro .school{padding-left:16px}
+.intro .university{font-size:22px}
+.intro .faculty{font-size:19px}
+.intro .major{font-size:14px;line-height:1.5}
+.intro .rule{width:100%;margin:24px 0}
+.intro .content{width:100%}
+.intro h1{font-size:clamp(30px,7.8vw,50px);letter-spacing:-.7px}
+.intro .eyebrow{font-size:18px}
+.intro .details{padding:0;flex-direction:column;gap:20px;font-size:16px}
+.intro .student{margin:0;padding-left:20px}
+.intro .art{position:relative;top:auto;right:auto;width:68%;margin:18px auto -24px;display:block}
+.intro .waves{height:100px}}
+.dashboard *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+.dashboard .container{
+            max-width: 1400px;
+            margin: auto;
+        }
+.dashboard .header{
+            background: white;
+            border-radius: 18px;
+            padding: 25px 30px;
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+.dashboard .header h2{
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+.dashboard .header p{
+            color: #6b7280;
+            font-size: 15px;
+        }
+.dashboard .status{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+.dashboard .status-dot{
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #9ca3af;
+        }
+.dashboard .status-dot.online{
+            background: #22c55e;
+        }
+.dashboard .status-dot.error{
+            background: #ef4444;
+        }
+.dashboard .cards{
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+.dashboard .card{
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+.dashboard .card-title{
+            color: #6b7280;
+
+            font-size: 15px;
+
+            margin-bottom: 12px;
+        }
+.dashboard .card-value{
+            font-size: 34px;
+
+            font-weight: 700;
+        }
+.dashboard .card-unit{
+            font-size: 16px;
+
+            color: #6b7280;
+
+            margin-left: 5px;
+        }
+.dashboard .update{
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 16px 20px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.05);
+
+            color: #4b5563;
+        }
+.dashboard .charts{
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+.dashboard .chart-box{
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.07);
+
+            height: 390px;
+        }
+.dashboard .chart-box h2{
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+.dashboard .chart-container{
+            position: relative;
+
+            height: 315px;
+        }
+.dashboard .error-box{
+            display: none;
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+        }
+@media (max-width: 1000px){.dashboard .cards{
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+.dashboard .charts{
+                grid-template-columns: 1fr;
+            }}
+@media (max-width: 600px){.dashboard .cards{
+                grid-template-columns: 1fr;
+            }
+.dashboard .header h2{
+                font-size: 24px;
+            }}
+
+:root{--navy:#082d65;--blue:#148ada;--cyan:#64cce8;--muted:#59647b}
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#edf3f8;color:#1f2937;font-family:'Weather Sans',Arial,sans-serif}.page{max-width:1600px;margin:auto}.intro .weather-slide{border-radius:20px;margin-bottom:28px}.dashboard .container{max-width:none}.dashboard .header{border-left:5px solid #148ada}.dashboard .header h2{color:#082d65;font-size:28px;margin:0 0 8px}.dashboard .card{border-top:4px solid #148ada}.dashboard .card:nth-child(1){border-color:#ef8c54}.dashboard .card:nth-child(2){border-color:#16a6ce}.dashboard .card:nth-child(3){border-color:#44b6a5}.dashboard .card:nth-child(4){border-color:#688bdb}.dashboard .card-value{color:#082d65}.dashboard .chart-box h2{color:#082d65}.dashboard .chart-box{height:410px}.dashboard .chart-container{height:320px}.dashboard .error-box{line-height:1.7}.page-footer{text-align:center;color:#64748b;padding:28px 12px;font-size:13px}@media(max-width:700px){body{padding:12px}.intro .weather-slide{margin-bottom:18px}.dashboard .header{padding:22px}.dashboard .header h2{font-size:22px}}
+
+.school-header{display:flex;align-items:center;gap:28px;padding:24px 32px;background:#fff;border-radius:20px;box-shadow:0 5px 20px #082d650b;margin-bottom:18px;color:var(--navy)}
+.school-header .logos{display:flex;gap:20px;align-items:center;flex-shrink:0}.school-header .logos img{width:90px;height:90px;object-fit:contain}.school-header .school{border-left:2px solid #082d65;padding-left:28px}.school-header p{margin:0}.school-header .university{font-size:clamp(20px,2.3vw,32px);font-weight:700}.school-header .faculty{font-weight:700;font-size:22px;margin-top:6px}.school-header .major{color:#59647b;font-size:15px;margin-top:6px}
+.site-nav{display:flex;gap:8px;background:#082d65;padding:10px;border-radius:14px;margin-bottom:24px;flex-wrap:wrap}.site-nav a{color:white;text-decoration:none;padding:12px 18px;border-radius:9px;font-weight:700}.site-nav a:hover{background:#ffffff22}.site-nav a[aria-current]{background:#fff;color:#082d65}a:focus-visible,button:focus-visible{outline:3px solid #eab308;outline-offset:3px}
+.intro .weather-slide{min-height:520px;padding-top:48px}.intro .art{top:35px}.intro .content{width:70%}.intro .details{padding-left:0}.intro h1{font-size:clamp(32px,4.5vw,64px)}
+.page-actions{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.button{display:inline-block;border:0;border-radius:10px;background:#148ada;color:#fff;text-decoration:none;padding:12px 20px;font:inherit;cursor:pointer}.button:hover{background:#082d65}.button:disabled{background:#94a3b8;cursor:default}.support-text{color:#59647b;font-size:14px;line-height:1.7;margin:16px 0}.table-wrap{overflow:auto;background:#fff;border-radius:16px;padding:8px 16px}table{border-collapse:collapse;width:100%;min-width:660px}th,td{padding:15px 12px;border-bottom:1px solid #e2e8f0;text-align:left}th{color:#082d65;background:#f0f7fc}td{font-size:14px}.dashboard .status{margin-top:15px}.chart-note{margin-bottom:20px!important;color:#59647b}
+@media(max-width:700px){.school-header{padding:20px;gap:16px;flex-direction:column;align-items:flex-start}.school-header .logos img{width:68px;height:68px}.school-header .school{padding-left:16px}.school-header .faculty{font-size:18px}.school-header .major{font-size:13px}.site-nav a{padding:10px 12px;font-size:14px}.intro .content{width:100%}.intro .weather-slide{padding-top:26px;min-height:0}.intro .art{top:auto}.intro h1{font-size:32px}}
+
+/* Can doi dau trang va chia deu menu */
+.school-header {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 110px;
+  align-items: center;
+  gap: clamp(18px, 3vw, 48px);
+  padding: 26px clamp(22px, 4vw, 60px);
+}
+.school-header .logos { display: contents; }
+.school-header .logos img {
+  width: 100px;
+  height: 110px;
+  justify-self: center;
+  grid-row: 1;
+}
+.school-header .logos img:first-child { grid-column: 1; }
+.school-header .logos img:last-child { grid-column: 3; }
+.school-header .school {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  border-left: none;
+  padding-left: 0;
+  text-align: center;
+}
+.school-header .university {
+  font-size: clamp(22px, 2.3vw, 36px);
+  line-height: 1.35;
+}
+.school-header .faculty { margin-top: 8px; }
+.school-header .major { line-height: 1.5; }
+.site-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.site-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 12px;
+  min-width: 0;
+  line-height: 1.5;
+}
+@media (max-width: 800px) {
+  .school-header {
+    grid-template-columns: 70px minmax(0, 1fr) 70px;
+    padding: 22px 18px;
+    gap: 14px;
+  }
+  .school-header .logos img { width: 68px; height: 78px; }
+  .school-header .university { font-size: 21px; }
+  .school-header .faculty { font-size: 18px; }
+  .school-header .major { font-size: 13px; }
+  .site-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .school-header { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .school-header .logos img:first-child { grid-column: 1; }
+  .school-header .logos img:last-child { grid-column: 2; }
+  .school-header .school { grid-column: 1 / -1; grid-row: 2; }
+  .school-header .university { font-size: 20px; }
+  .site-nav { gap: 8px; padding: 8px; }
+  .site-nav a { font-size: 13px; padding: 12px 6px; }
+}
+
+/* Hai logo ben trai, ten truong va khoa ben phai */
+.school-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(22px, 3vw, 48px);
+}
+.school-header .logos {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  flex-shrink: 0;
+}
+.school-header .school {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  border-left: 2px solid var(--navy);
+  padding-left: clamp(22px, 3vw, 48px);
+}
+@media (max-width: 800px) {
+  .school-header { gap: 18px; }
+  .school-header .logos { gap: 12px; }
+  .school-header .school { padding-left: 18px; }
+}
+@media (max-width: 480px) {
+  .school-header { gap: 12px; padding: 18px 12px; }
+  .school-header .logos { gap: 6px; }
+  .school-header .logos img { width: 40px; height: 52px; }
+  .school-header .school { padding-left: 12px; }
+  .school-header .university { font-size: 16px; }
+  .school-header .faculty { font-size: 14px; }
+  .school-header .major { font-size: 11px; }
+}

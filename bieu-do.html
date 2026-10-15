@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biểu đồ thời tiết | Trường Đại học Thủy Lợi</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="page">
+        <header class="school-header">
+            <div class="logos">
+                <img src="assets/logo-1.png" alt="Logo Trường Đại học Thủy Lợi">
+                <img src="assets/logo-2.png" alt="Logo Khoa Cơ khí">
+            </div>
+
+            <div class="school">
+                <p class="university">TRƯỜNG ĐẠI HỌC THỦY LỢI</p>
+                <p class="faculty">KHOA CƠ KHÍ</p>
+                <p class="major">BỘ MÔN KỸ THUẬT CƠ ĐIỆN TỬ</p>
+            </div>
+        </header>
+
+        <nav class="site-nav" aria-label="Điều hướng chính">
+            <a href="index.html">Trang chủ</a>
+            <a href="giam-sat.html">Dữ liệu tức thời</a>
+            <a href="bieu-do.html" aria-current="page">Biểu đồ thời tiết</a>
+            <a href="lich-su.html">Lịch sử dữ liệu</a>
+        </nav>
+
+        <main class="dashboard">
+            <div class="container">
+                <!-- Giữ các ID để app.js cập nhật trạng thái -->
+                <div hidden style="display: none;">
+                    <span id="statusDot" class="status-dot"></span>
+                    <span id="statusText"></span>
+                </div>
+
+                <div id="errorBox" class="error-box" role="alert"></div>
+
+                <div class="update">
+                    <strong>Cập nhật gần nhất:</strong>
+                    <span id="lastUpdate">--</span>
+                </div>
+
+                <div class="charts">
+                    <!-- BIỂU ĐỒ NHIỆT ĐỘ -->
+                    <div class="chart-box">
+                        <h2>🌡️ Biểu đồ nhiệt độ</h2>
+                        <div class="chart-container">
+                            <canvas id="temperatureChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- BIỂU ĐỒ ĐỘ ẨM -->
+                    <div class="chart-box">
+                        <h2>💧 Biểu đồ độ ẩm</h2>
+                        <div class="chart-container">
+                            <canvas id="humidityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- BIỂU ĐỒ TỐC ĐỘ GIÓ -->
+                    <div class="chart-box">
+                        <h2>💨 Biểu đồ tốc độ gió</h2>
+                        <div class="chart-container">
+                            <canvas id="windChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- BIỂU ĐỒ LƯỢNG MƯA -->
+                    <div class="chart-box">
+                        <h2>🌧️ Biểu đồ lượng mưa</h2>
+                        <div class="chart-container">
+                            <canvas id="rainChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <p id="chartNotice" class="support-text" role="status"></p>
+            </div>
+        </main>
+
+        <footer class="page-footer">
+            Mô hình trạm quan trắc thời tiết · Khoa Cơ khí · Trường Đại học Thủy Lợi
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+</html>
