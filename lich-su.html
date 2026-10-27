@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lịch sử dữ liệu | Trường Đại học Thủy Lợi</title>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .history-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .history-actions .update,
+        .history-actions .page-actions {
+            margin: 0;
+        }
+
+        .history-table-wrap {
+            width: 100%;
+            max-height: 884px;
+            overflow: auto;
+            border: 1px solid #dce5ef;
+            border-radius: 12px;
+            background: #ffffff;
+            scrollbar-width: thin;
+            scrollbar-color: #8ba8c8 #eef3f8;
+        }
+
+        .history-table-wrap::-webkit-scrollbar {
+            width: 9px;
+            height: 9px;
+        }
+
+        .history-table-wrap::-webkit-scrollbar-track {
+            background: #eef3f8;
+        }
+
+        .history-table-wrap::-webkit-scrollbar-thumb {
+            border: 2px solid #eef3f8;
+            border-radius: 8px;
+            background: #8ba8c8;
+        }
+
+        .history-table {
+            width: 100%;
+            min-width: 960px;
+            margin: 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed;
+            font-size: 14px;
+            color: #263b53;
+        }
+
+        .history-table th,
+        .history-table td {
+            box-sizing: border-box;
+            padding: 10px 12px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            line-height: 20px;
+            border: 0;
+            border-right: 1px solid #e4ebf3;
+            border-bottom: 1px solid #e4ebf3;
+        }
+
+        .history-table th:last-child,
+        .history-table td:last-child {
+            border-right: 0;
+        }
+
+        .history-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            height: 44px;
+            background: #0d3265;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .history-table tbody td {
+            height: 42px;
+        }
+
+        .history-table tbody tr:nth-child(even) {
+            background: #f3f7fb;
+        }
+
+        .history-table tbody tr:hover {
+            background: #e6f1fc;
+        }
+
+        .history-table tbody td:not(:first-child) {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .history-table col:first-child {
+            width: 25%;
+        }
+
+        .history-table col:not(:first-child) {
+            width: 15%;
+        }
+
+        @media (max-width: 600px) {
+            .history-table {
+                font-size: 13px;
+            }
+
+            .history-table th,
+            .history-table td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="school-header">
+            <div class="logos">
+                <img src="assets/logo-1.png" alt="Logo Trường Đại học Thủy Lợi">
+                <img src="assets/logo-2.png" alt="Logo Khoa Cơ khí">
+            </div>
+
+            <div class="school">
+                <p class="university">TRƯỜNG ĐẠI HỌC THỦY LỢI</p>
+                <p class="faculty">KHOA CƠ KHÍ</p>
+                <p class="major">BỘ MÔN KỸ THUẬT CƠ ĐIỆN TỬ</p>
+            </div>
+        </header>
+
+        <nav class="site-nav" aria-label="Điều hướng chính">
+            <a href="index.html">Trang chủ</a>
+            <a href="giam-sat.html">Dữ liệu tức thời</a>
+            <a href="bieu-do.html">Biểu đồ thời tiết</a>
+            <a href="lich-su.html" aria-current="page">Lịch sử dữ liệu</a>
+        </nav>
+
+        <main class="dashboard">
+            <div class="container">
+                <div hidden style="display: none;">
+                    <span id="statusDot" class="status-dot"></span>
+                    <span id="statusText"></span>
+                    <p id="recordCount"></p>
+                </div>
+
+                <div id="errorBox" class="error-box" role="alert"></div>
+
+                <div class="history-actions">
+                    <div class="update">
+                        <strong>Cập nhật gần nhất:</strong>
+                        <span id="lastUpdate">--</span>
+                    </div>
+
+                    <div class="page-actions">
+                        <button id="downloadCsv" class="button" disabled>
+                            Tải dữ liệu CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    id="historyScroll"
+                    class="history-table-wrap"
+                    tabindex="0"
+                    role="region"
+                    aria-label="Bảng lịch sử thời tiết, cuộn để xem thêm"
+                >
+                    <table class="history-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Nhiệt độ (°C)</th>
+                                <th scope="col">Độ ẩm (%)</th>
+                                <th scope="col">Tốc độ gió (m/s)</th>
+                                <th scope="col">Lượng mưa (mm)</th>
+                                <th scope="col">Nồng độ bụi (µg/m³)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="historyBody">
+                            <tr>
+                                <td colspan="6">Đang tải dữ liệu...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer class="page-footer">
+            Mô hình trạm quan trắc thời tiết · Khoa Cơ khí ·
+            Trường Đại học Thủy Lợi
+        </footer>
+    </div>
+
+    <script>
+        /*
+         * app.js hiện có hiển thị bản ghi mới nhất ở trên.
+         * Giữ 50 dòng đầu và đặt chiều cao vùng cuộn bằng 20 dòng.
+         */
+        (() => {
+            const body = document.getElementById("historyBody");
+            const scroll = document.getElementById("historyScroll");
+            const table = scroll.querySelector("table");
+
+            function adjustHistoryTable() {
+                const rows = Array.from(body.rows);
+                const dataRows = rows.filter(row => row.cells.length === 6);
+
+                dataRows.slice(50).forEach(row => row.remove());
+
+                const visibleRows = dataRows.slice(0, 20);
+
+                if (visibleRows.length === 0) {
+                    return;
+                }
+
+                const headerHeight =
+                    table.tHead.getBoundingClientRect().height;
+
+                const rowsHeight = visibleRows.reduce(
+                    (height, row) =>
+                        height + row.getBoundingClientRect().height,
+                    0
+                );
+
+                const borders =
+                    scroll.offsetHeight - scroll.clientHeight;
+
+                scroll.style.maxHeight =
+                    `${Math.ceil(headerHeight + rowsHeight + borders)}px`;
+            }
+
+            const observer = new MutationObserver(adjustHistoryTable);
+
+            observer.observe(body, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+
+            window.addEventListener("resize", adjustHistoryTable);
+            window.addEventListener("load", adjustHistoryTable);
+            adjustHistoryTable();
+        })();
+    </script>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
